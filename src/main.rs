@@ -12,7 +12,6 @@ use std::io::BufReader;
 use config::Config;
 use log::LevelFilter;
 use oxigraph::io::GraphFormat;
-// use oxigraph::model::vocab::xsd;
 
 use oxigraph::model::GraphName;
 use oxigraph::store::Store;
@@ -55,38 +54,6 @@ fn load_onto_into_store(store: &mut Store, onto_id: usize) -> Res<()> {
 
     Ok(())
 }
-
-// fn oxigraph_query_example() -> Res<()> {
-//     let mut store = Store::new().unwrap();
-
-//     // insertion
-//     let ex = NamedNode::new("http://example.com").unwrap();
-//     let quad = Quad::new(ex.clone(), ex.clone(), ex.clone(), GraphName::DefaultGraph);
-//     store.insert(&quad).unwrap();
-
-//     for ont_id in 0..SAMPLE_OWL_ONTOLOGY_TURTLE_FILE_PATHS.len() {
-//         load_onto_into_store(&mut store, ont_id)?;
-//     }
-
-//     // quad filter
-//     let results = store
-//         .quads_for_pattern(Some(ex.as_ref().into()), None, None, None)
-//         .collect::<Result<Vec<Quad>, _>>()
-//         .unwrap();
-//     assert_eq!(vec![quad], results);
-
-//     // SPARQL query
-//     if let QueryResults::Solutions(mut solutions) =
-//         store.query("SELECT ?s WHERE { ?s ?p ?o }").unwrap()
-//     {
-//         assert_eq!(
-//             solutions.next().unwrap().unwrap().get("s"),
-//             Some(&ex.into())
-//         );
-//     }
-
-//     Ok(())
-// }
 
 fn load_source() -> Res<Store> {
     let mut store_owl = Store::new()?;
